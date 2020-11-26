@@ -7,27 +7,29 @@ import java.sql.Timestamp;
  * 日期: 15:37 2020/11/26
  * 描述：
  */
-public class Msg {
+public class Message {
     private Integer id;
     private Integer formUid;
     private Integer toUid;
-    private String mtitle;
-    private String mcontent;
+    private String mTitle;
+    private String mContent;
+    private Integer readFlag;
     private String createTime;
+
+    public Message() {
+    }
 
     @Override
     public String toString() {
-        return "Msg{" +
+        return "Message{" +
                 "id=" + id +
                 ", formUid=" + formUid +
                 ", toUid=" + toUid +
-                ", mtitle='" + mtitle + '\'' +
-                ", mcontent='" + mcontent + '\'' +
+                ", mTitle='" + mTitle + '\'' +
+                ", mContent='" + mContent + '\'' +
+                ", readFlag=" + readFlag +
                 ", createTime='" + createTime + '\'' +
                 '}';
-    }
-
-    public Msg() {
     }
 
     public Integer getId() {
@@ -54,20 +56,28 @@ public class Msg {
         this.toUid = toUid;
     }
 
-    public String getMtitle() {
-        return mtitle;
+    public String getmTitle() {
+        return mTitle;
     }
 
-    public void setMtitle(String mtitle) {
-        this.mtitle = mtitle;
+    public void setmTitle(String mTitle) {
+        this.mTitle = mTitle;
     }
 
-    public String getMcontent() {
-        return mcontent;
+    public String getmContent() {
+        return mContent;
     }
 
-    public void setMcontent(String mcontent) {
-        this.mcontent = mcontent;
+    public void setmContent(String mContent) {
+        this.mContent = mContent;
+    }
+
+    public Integer getReadFlag() {
+        return readFlag;
+    }
+
+    public void setReadFlag(Integer readFlag) {
+        this.readFlag = readFlag;
     }
 
     public String getCreateTime() {

@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 import java.io.IOException;
 
 /**
@@ -36,13 +37,17 @@ public class UserServlet extends BaseServlet {
         //System.out.println(result);
     }
     //登录
-    public void login(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void login(HttpServletRequest request, HttpServletResponse response) throws IOException, ServletException {
         String username=request.getParameter("username");
         String password=request.getParameter("password");
         User user=userService.login(new User(username,password,null));
         //System.out.println(user);
         if(user!=null){
-            response.sendRedirect(request.getContextPath()+"/list.jsp");
+            //登录成功
+            HttpSession session=request.getSession();
+            session.setAttribute("user",user);
+            request.getRequestDispatcher("/message.do?action=queryList").forward(request,response);
+            //response.sendRedirect(request.getContextPath()+"/list.jsp");
         }else {
             response.sendRedirect(request.getContextPath()+"/login.jsp");
         }
