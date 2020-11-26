@@ -35,9 +35,11 @@ public class MessageServlet extends BaseServlet {
         super.doGet(request,response);
     }
 
-    public void queryList(HttpServletRequest request, HttpServletResponse response) {
+    public void queryList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User user = (User) request.getSession().getAttribute("user");
         List<Message> messages=messageSerive.queryMessageByToUid(user.getId());
-        System.out.println(messages);
+        //System.out.println(messages);
+        request.setAttribute("messages",messages);
+        request.getRequestDispatcher("/list.jsp").forward(request,response);
     }
 }

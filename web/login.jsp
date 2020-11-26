@@ -41,7 +41,7 @@
 <body>
 <div class="wrapper">
     <div class="title">欢迎进入短信息系统</div>
-    <form action="<%=basePath%>user.do">
+    <form action="<%=basePath%>user.do" method="post">
         <input name="action" type="hidden" value="login">
         <div>
             用户名<span class="red">*</span>
@@ -50,6 +50,13 @@
         <div>
             密码<span class="red">*</span>
             <span><input type="password" name="password" id="password"></span>
+        </div>
+        <div>
+            验证码<span class="red">*</span>
+            <span>
+                <input type="text" name="code" id="code">
+                <img src="/kaptcha.jpg"><br>
+            </span>
         </div>
         <div>
             <span><button type="submit">登陆</button></span>
