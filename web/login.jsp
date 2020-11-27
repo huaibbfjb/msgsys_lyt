@@ -41,7 +41,7 @@
 <body>
 <div class="wrapper">
     <div class="title">欢迎进入短信息系统</div>
-    <form action="<%=basePath%>user.do" method="post">
+    <form action="<%=basePath%>user.do" method="get">
         <input name="action" type="hidden" value="login">
         <div>
             用户名<span class="red">*</span>
@@ -58,6 +58,11 @@
                 <img src="/kaptcha.jpg"><br>
             </span>
         </div>
+        <%--<div>--%>
+            <%--头像上传<span class="red">*</span>--%>
+            <%--&lt;%&ndash;multiple:可以多选 accept=".doc,.docx" &ndash;%&gt;--%>
+            <%--<input type="file" name="file" accept=".jpg,.png">--%>
+        <%--</div>--%>
         <div>
             <span><button type="submit">登陆</button></span>
             <span><button type="button" onclick="toRegister()">注册</button></span>

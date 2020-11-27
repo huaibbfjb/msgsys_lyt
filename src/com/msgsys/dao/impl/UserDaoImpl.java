@@ -13,8 +13,8 @@ import java.util.List;
  */
 public class UserDaoImpl extends BaseDao implements UserDao {
     public int insert(User user) {
-        String sql = "insert into t_user (username,password,email)values(?,?,?)";
-        return update(sql, user.getUsername(), user.getPassword(), user.getEmail());
+        String sql = "insert into t_user (username,password,email,imgPath)values(?,?,?,?)";
+        return update(sql, user.getUsername(), user.getPassword(), user.getEmail(),user.getImgPath());
     }
 
     public int update(User user) {

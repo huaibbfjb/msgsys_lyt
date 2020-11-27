@@ -10,6 +10,7 @@ public class User {
     private String username;
     private String password;
     private String email;
+    private String imgPath;
 
     @Override
     public String toString() {
@@ -18,6 +19,7 @@ public class User {
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", email='" + email + '\'' +
+                ", imgPath='" + imgPath + '\'' +
                 '}';
     }
 
@@ -34,7 +36,22 @@ public class User {
         this.email = email;
     }
 
+    public User(String username, String password, String email, String imgPath) {
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.imgPath = imgPath;
+    }
+
     public User() {
+    }
+
+    public String getImgPath() {
+        return imgPath;
+    }
+
+    public void setImgPath(String imgPath) {
+        this.imgPath = imgPath;
     }
 
     public Integer getId() {
