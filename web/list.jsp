@@ -30,7 +30,7 @@
             float: right;
             background-color: aliceblue;
             padding: 10px;
-            border: 1px solid red;
+            /*border: 1px solid red;*/
             line-height: 35px;
         }
 
@@ -80,7 +80,8 @@
         <div class="menu" >
             <span>
                 当前用户：<%=user.getUsername()%>&nbsp;
-                <img style="vertical-align: middle" width="40px;" src="/fileDownload?path=<%=URLEncoder.encode(user.getImgPath(),"UTF-8")%>"/>
+                <img style="vertical-align: middle" width="40px;"
+                     src="/fileDownload?path=<%=URLEncoder.encode(user.getImgPath(),"UTF-8")%>"/>
             </span>
 
             <span>

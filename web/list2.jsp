@@ -48,11 +48,10 @@
             if("".equals(ImgPath)||ImgPath==null){
                 ImgPath="E:\\upload\\default.jpg";
             }
-            //System.out.println("URLEncoder后:"+URLEncoder.encode(ImgPath,"UTF-8"));
         %>
-        <%--//金句：前端展示图片--%>
+        <%--金句：前端展示图片--%>
         <td>
-            <img width="80px;" src="/fileDownload?path=<%=URLEncoder.encode(ImgPath,"UTF-8")%>"/>
+            <img width="50px;" src="/fileDownload?path=<%=URLEncoder.encode(ImgPath,"UTF-8")%>"/>
         </td>
 
     </tr>
