@@ -41,7 +41,7 @@
 <body>
 <div class="wrapper">
     <div class="title">欢迎进入短信息系统</div>
-    <form action="<%=basePath%>user.do" method="get">
+    <form action="<%=basePath%>user.do" method="post">
         <input name="action" type="hidden" value="login">
         <div>
             用户名<span class="red">*</span>

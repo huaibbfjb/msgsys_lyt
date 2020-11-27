@@ -16,7 +16,7 @@ public interface UserDao {
 
     int delete(Integer id);
 
-    List<User> querAll();
+    List<User> queryAll();
 
     User queryUserById(Integer id);
 

@@ -18,8 +18,8 @@ public class UserDaoImpl extends BaseDao implements UserDao {
     }
 
     public int update(User user) {
-        String sql = "update t_user set username = ?,password = ?,email = ? where id = ?";
-        return update(sql, user.getUsername(), user.getPassword(), user.getEmail(), user.getId());
+        String sql = "update t_user set username = ?,password = ?,email = ?,imgPath = ? where id = ?";
+        return update(sql, user.getUsername(), user.getPassword(), user.getEmail(), user.getImgPath(),user.getId());
     }
 
     public int delete(Integer id) {
@@ -27,7 +27,7 @@ public class UserDaoImpl extends BaseDao implements UserDao {
         return update(sql,id);
     }
 
-    public List<User> querAll() {
+    public List<User> queryAll() {
         String sql="select * from t_user";
         return queryForList(User.class,sql);
     }
