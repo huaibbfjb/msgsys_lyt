@@ -190,7 +190,7 @@
         </div>
         <div style="margin-left: 30%; margin-top: 40px">
                 <span>
-                    <button type="submit" id="btn1">确认修改</button>
+                    <button type="submit" id="btn1">确认注册</button>
                 </span>
             <a href="/login.jsp" style="margin-left: 30px">
                 <button type="button">返回</button>

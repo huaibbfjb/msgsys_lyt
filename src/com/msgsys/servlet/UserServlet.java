@@ -21,6 +21,8 @@ import java.io.IOException;
 import java.io.UnsupportedEncodingException;
 import java.util.Date;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import static com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY;
 
@@ -87,8 +89,17 @@ public class UserServlet extends BaseServlet {
                             user.setImgPath("E:\\upload\\default.png");
                             System.out.println("未上传头像，默认为默认头像!");
                         } else {
-                            String path = newpic(fileItem);
-                            user.setImgPath(path);
+                            String reg = ".+(.JPEG|.jpeg|.JPG|.jpg)$";
+                            Pattern pattern = Pattern.compile(reg);
+                            Matcher matcher = pattern.matcher(fileItem.getName());
+                            //System.out.println(matcher.find());
+                            if(matcher.find()==false){//上传的文件不是图片格式
+                                user.setImgPath("E:\\upload\\default.png");
+                                System.out.println("上传的文件不是图片格式，默认为默认头像!");
+                            }else {
+                                String path = newpic(fileItem);
+                                user.setImgPath(path);
+                            }
                         }
 
                     }
