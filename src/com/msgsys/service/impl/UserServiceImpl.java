@@ -30,4 +30,16 @@ public class UserServiceImpl implements UserService {
     public int update(User user) {
         return userDao.update(user);
     }
+
+    public int delete(Integer id) {
+        return userDao.delete(id);
+    }
+
+    public User queryUserById(Integer id) {
+        return userDao.queryUserById(id);
+    }
+
+    public User queryUserByEmail(String email) {
+        return userDao.queryUserByEmail(email);
+    }
 }

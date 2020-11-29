@@ -15,4 +15,12 @@ public interface MessageSerive {
 
     //根据id查询邮件详情
     Message queryMessageById(Integer id);
+
+    //根据id删除
+    int delete(Integer id);
+
+    int insert(Message message);
+
+
+    int update(Message message);
 }

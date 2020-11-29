@@ -3,6 +3,7 @@
 <%@ page import="com.msgsys.entity.User" %>
 <%@ page import="java.net.URLEncoder" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
+<%@ include file="head.jsp" %>
 <html>
 <head>
     <title>用户个人界面</title>
@@ -73,23 +74,21 @@
 <body>
 <%
     List<Message> messages = (List<Message>) request.getAttribute("messages");
-    User user = (User) session.getAttribute("user");
+    User user = (User) session.getAttribute("user");//session中保存的当前登录的用户
 %>
 <div class="wrapper">
     <div class="header">
-        <div class="menu" >
+        <div class="menu">
             <span>
                 当前用户：<%=user.getUsername()%>&nbsp;
-                <img style="vertical-align: middle" width="40px;"
+                <img style="width: 45px;height: 45px;vertical-align: middle"
                      src="/fileDownload?path=<%=URLEncoder.encode(user.getImgPath(),"UTF-8")%>"/>
             </span>
-
             <span>
-                <a href="#">发送消息</a>
+                <a href="send.jsp">发送消息</a>
                 <a href="logout.jsp">退出</a>
                 <a href="updateUser.jsp">修改信息</a>
             </span>
-
         </div>
     </div>
     <div class="clear"></div>
@@ -117,14 +116,14 @@
                 </span>
                 <span class="bordstyle"><%=message.getmTitle()%></span>
                 <span>
-                    <a href="message.do?action=query&id=<%=message.getId()%>%>">
+                    <a href="message.do?action=queryDetail&id=<%=message.getId()%>">
                     <%=message.getmContent()%>
                     </a>
                 </span>
                 <span class="rfloat">
-                    <span><a href="#">删除</a></span>
+                    <span><a href="message.do?action=delete&id=<%=message.getId()%>">删除</a></span>
                     <span><a href="#">回信</a></span>
-                    <span></span>
+                    <span><%=message.getCreateTime()%></span>
                 </span>
             </li>
             <%

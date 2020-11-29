@@ -20,4 +20,10 @@ public interface UserService {
     List<User> queryAll();
 
     int update(User user);
+
+    int delete(Integer id);
+
+    User queryUserById(Integer id);
+
+    User queryUserByEmail(String email);
 }

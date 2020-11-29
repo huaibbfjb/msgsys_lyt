@@ -21,4 +21,6 @@ public interface UserDao {
     User queryUserById(Integer id);
 
     User queryUserByNameAndPassword(User user);
+
+    User queryUserByEmail(String email);
 }

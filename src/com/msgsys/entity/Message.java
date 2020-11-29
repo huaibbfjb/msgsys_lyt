@@ -1,6 +1,5 @@
 package com.msgsys.entity;
 
-import java.sql.Timestamp;
 
 /**
  * 作者：LiuYunTao
@@ -9,27 +8,35 @@ import java.sql.Timestamp;
  */
 public class Message {
     private Integer id;
-    private Integer formUid;
+    private Integer fromUid;
     private Integer toUid;
     private String mTitle;
     private String mContent;
     private Integer readFlag;
     private String createTime;
 
-    public Message() {
-    }
-
     @Override
     public String toString() {
         return "Message{" +
                 "id=" + id +
-                ", formUid=" + formUid +
+                ", fromUid=" + fromUid +
                 ", toUid=" + toUid +
                 ", mTitle='" + mTitle + '\'' +
                 ", mContent='" + mContent + '\'' +
                 ", readFlag=" + readFlag +
                 ", createTime='" + createTime + '\'' +
                 '}';
+    }
+
+    public Message() {
+    }
+
+    public Integer getFromUid() {
+        return fromUid;
+    }
+
+    public void setFromUid(Integer fromUid) {
+        this.fromUid = fromUid;
     }
 
     public Integer getId() {
@@ -40,13 +47,6 @@ public class Message {
         this.id = id;
     }
 
-    public Integer getFormUid() {
-        return formUid;
-    }
-
-    public void setFormUid(Integer formUid) {
-        this.formUid = formUid;
-    }
 
     public Integer getToUid() {
         return toUid;

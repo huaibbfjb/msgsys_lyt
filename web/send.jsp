@@ -75,8 +75,27 @@
         .content-top span {
             margin-right: 10px;
         }
-
     </style>
+    <script type="text/javascript" src="js/jquery-1.7.2.js"></script>
+    <script type="text/javascript">
+        $(function() {
+            //判断字符串是否为空
+            function isEmptyOrBlank(str) {
+                if (str == null || str.length == 0) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+            $("#btn1").bind("click",function () {
+                if(isEmptyOrBlank($("#mtitle").val()) || isEmptyOrBlank($("#email").val()) ||
+                    isEmptyOrBlank($("#mcontent").val())){
+                    //alert("空！")
+                    return false;
+                }
+            });
+        });
+    </script>
 </head>
 <body>
 <%
@@ -89,7 +108,7 @@
         <div class="menu">
             <span>
                 当前用户：<%=user.getUsername()%>&nbsp;
-                <img style="width: 45px;height: 45px;vertical-align: middle"
+                <img style="vertical-align: middle" width="40px;"
                      src="/fileDownload?path=<%=URLEncoder.encode(user.getImgPath(),"UTF-8")%>"/>
             </span>
             <span>
@@ -102,15 +121,22 @@
     </div>
     <div class="clear"></div>
     <div class="content">
-        <div class="content-top">
-            <span>标题：<%=message.getmTitle()%></span>
-            <span>来自：<%=user2.getUsername()%></span>
-            <span>时间：<%=message.getCreateTime()%></span>
-        </div>
+        <form action="message.do?action=send" method="post">
+            <div class="content-top">
+            <span>
+                标题：<input name="mtitle" type="text" id="mtitle">
+            </span><br><br>
+                <span>
+                发送至邮件地址：<input name="email" type="text" id="email">
+            </span><br>
 
-        <div class="content-body">
-            <%=message.getmContent()%>
-        </div>
+            </div>
+            <div class="content-body">
+                消息内容:<br>
+                <textarea name="mcontent" id="mcontent" style="width: 500px;height: 200px"></textarea>
+            </div>
+            <button type="submit" id="btn1">发送</button>
+        </form>
 
     </div>
 </div>

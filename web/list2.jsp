@@ -12,7 +12,7 @@
 <head>
     <title>全部用户列表</title>
     <style>
-        td{
+        td {
             font-size: 20px;
             border: 1px solid #a7b1bd;
             text-align: center;
@@ -43,10 +43,10 @@
         <td><%=user.getEmail()%>
         </td>
         <%
-            String ImgPath=user.getImgPath();
+            String ImgPath = user.getImgPath();
             //System.out.println("list2中的路径:"+ImgPath);
-            if("".equals(ImgPath)||ImgPath==null){
-                ImgPath="E:\\upload\\default.jpg";
+            if ("".equals(ImgPath) || ImgPath == null) {
+                ImgPath = "E:\\upload\\default.jpg";
             }
         %>
         <%--金句：前端展示图片--%>

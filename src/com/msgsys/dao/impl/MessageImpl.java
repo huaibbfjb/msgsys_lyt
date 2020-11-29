@@ -16,13 +16,13 @@ public class MessageImpl extends BaseDao implements MessageDao {
 
     public int insert(Message message) {
         String sql = "INSERT INTO T_msg(fromUid,toUid,mtitle,mcontent,readflag,createTime)VALUES(?,?,?,?,?,?)";
-        return update(sql, message.getFormUid(), message.getFormUid(), message.getmTitle(),
+        return update(sql, message.getFromUid(), message.getToUid(), message.getmTitle(),
                 message.getmContent(), message.getReadFlag(), message.getCreateTime());
     }
 
     public int update(Message message) {
         String sql = "update t_msg set fromUid=?,toUid=?,mtitle=?,mcontent=?,readflag=?,createTime=? where id=?";
-        return update(sql, message.getFormUid(), message.getFormUid(), message.getmTitle(),
+        return update(sql, message.getFromUid(), message.getToUid(), message.getmTitle(),
                 message.getmContent(), message.getReadFlag(), message.getCreateTime(), message.getId());
     }
 
@@ -45,4 +45,6 @@ public class MessageImpl extends BaseDao implements MessageDao {
         String sql = "select * from t_msg where toUid=?";
         return queryForList(Message.class, sql, id);
     }
+
+
 }
