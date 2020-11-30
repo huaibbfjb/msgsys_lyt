@@ -32,17 +32,19 @@
         .red {
             color: red;
         }
+
         form div {
             line-height: 30px;
         }
-        form div span{
+
+        form div span {
             color: red;
             font-size: 15px;
         }
     </style>
     <script type="text/javascript" src="js/jquery-1.7.2.js"></script>
     <script type="text/javascript">
-        $(function() {
+        $(function () {
             //判断字符串是否为空
             function isEmptyOrBlank(str) {
                 if (str == null || str.length == 0) {
@@ -51,22 +53,23 @@
                     return false;
                 }
             }
+
             //用户名
             function AccountName() {
                 var $accN = $("#username").val();
                 if (!isEmptyOrBlank($accN)) {	//不为空
                     var $zz = /^[a-zA-Z]{1}\w{3,15}$/;
                     if (!$zz.test($accN)) {
-                        $("#user_prompt").show();
+                        $("#user_prompt").html("用户名由英文字母和数字组成的4-16位字符，以字母开头");
                         return false;
                     } else {
                         return true;
                     }
                 } else {			//为空
-                    $("#user_prompt").show();
                     return false;
                 }
             }
+
             //密码
             function password() {
                 var $password = $("#password").val();
@@ -83,6 +86,7 @@
                     return false;
                 }
             }
+
             //确认密码
             function confirmPassword() {
                 var $password = $("#password").val();
@@ -93,52 +97,94 @@
                     return false;
                 }
             }
+
             //验证邮箱
             function mailbox() {
                 var $mailbox = $("#email").val();
                 if (!isEmptyOrBlank($mailbox)) {
                     var $mailRegular = /^\w{1,10}@\w{0,3}.\w{3}$/;
                     if (!$mailRegular.test($mailbox)) {
-                        $("#email_prompt").show();
+                        $("#email_prompt").html("邮箱格式不正确");
                         return false;
                     } else {
                         return true;
                     }
                 } else {
                     return false;
-                    $("#email_prompt").show();
                 }
             }
 
             //用户名
-            $("#username").bind("focus", function() {
+            $("#username").bind("focus", function () {
                 $("#user_prompt").hide();
             });
-            $("#username").bind("blur", function() {
-                AccountName();
+            $("#username").bind("blur", function () {
+                //AccountName();
+                if (AccountName() == true) {//格式正确
+                    //$("#user_prompt").show();
+                    var username = $("#username").val();
+                    $.ajax({
+                        url: "http://localhost:8083/user.do",//TODO:添加Servlet url-pattern
+                        data: {action: "queryUserByUsername", username: username},
+                        type: "GET",
+                        dataType: "text",//返回的数据类型
+                        success: function (data) {
+                            //data代表服务器回传的数据
+                            console.log(data);
+                            if (data == "true") {
+                                $("#user_prompt").html("<font color=\"green\">用户名可用!</font>");
+                            }
+                            else {
+                                $("#user_prompt").html("<font color=\"red\">用户名不可用!</font>");
+                            }
+                            $("#user_prompt").show();
+                        }
+                    });
+                } else {//格式不正确
+                    $("#user_prompt").show();
+                    return false;
+                }
             });
             //密码
-            $("#password").bind("focus", function() {
+            $("#password").bind("focus", function () {
                 $("#pwd_prompt").hide();
             });
-            $("#password").bind("blur", function() {
+            $("#password").bind("blur", function () {
                 password();
             });
             //确认密码
-            $("#repassword").bind("focus", function() {
+            $("#repassword").bind("focus", function () {
                 $("#repwd_prompt").hide();
             });
-            $("#repassword").bind("blur", function() {
+            $("#repassword").bind("blur", function () {
                 confirmPassword();
             });
             //邮箱确认
-            $("#email").bind("focus", function() {
+            $("#email").bind("focus", function () {
                 $("#email_prompt").hide();
             });
-            $("#email").bind("blur", function() {
-                mailbox();
+            $("#email").bind("blur", function () {
+                if (mailbox() == true) {//格式正确
+                    //$("#email_prompt").show();
+                    var email = $("#email").val();
+                    $.ajax({
+                        url: "http://localhost:8083/user.do",//TODO:添加Servlet url-pattern
+                        data: {action: "queryUserByEmail", email: email},
+                        type: "GET",
+                        dataType: "text",//返回的数据类型
+                        success: function (data) {
+                            //data代表服务器回传的数据
+                            console.log(data);
+                            $("#email_prompt").html(data);
+                            $("#email_prompt").show();
+                        }
+                    });
+                } else {//格式不正确
+                    $("#email_prompt").show();
+                    return false;
+                }
             });
-            $('#chooseImage').bind('change', function() {
+            $('#chooseImage').bind('change', function () {
                 var filePath = $(this).val(), //获取到input的value，里面是文件的路径
                     fileFormat = filePath.substring(filePath.lastIndexOf(".")).toLowerCase(),
                     src = window.URL.createObjectURL(this.files[0]); //转成可以在本地预览的格式
@@ -151,8 +197,8 @@
                     $('#cropedBigImg').attr('src', src);
                 }
             });
-            $("#btn1").bind("click",function () {
-                if(AccountName()==false || password()==false || confirmPassword() == false || mailbox() == false){
+            $("#btn1").bind("click", function () {
+                if (AccountName() == false || password() == false || confirmPassword() == false || mailbox() == false) {
                     return false;
                 }
             });
@@ -160,7 +206,7 @@
     </script>
 </head>
 <body>
-<div class="wrapper" style="margin: 0 auto;width: 800px" >
+<div class="wrapper" style="margin: 0 auto;width: 800px">
     <div class="title">欢迎注册</div>
     <form action="<%=basePath%>user.do?action=register" method="post" enctype="multipart/form-data">
         <div>
@@ -186,7 +232,7 @@
         <div>
             头像上传<span class="red">*</span>
             <input type="file" name="file" accept=".jpg,.png,.jpeg" id="chooseImage"><br>
-            <img id="cropedBigImg" style="width: 200px;" src="images/default.png" />
+            <img id="cropedBigImg" style="width: 200px;" src="images/default.png"/>
         </div>
         <div style="margin-left: 30%; margin-top: 40px">
                 <span>

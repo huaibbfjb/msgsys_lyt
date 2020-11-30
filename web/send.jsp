@@ -76,9 +76,9 @@
             margin-right: 10px;
         }
     </style>
-    <script type="text/javascript" src="js/jquery-1.7.2.js"></script>
+    <script type="text/javascript" src="js/jquery-2.0.0.min.js"></script>
     <script type="text/javascript">
-        $(function() {
+        $(function () {
             //判断字符串是否为空
             function isEmptyOrBlank(str) {
                 if (str == null || str.length == 0) {
@@ -87,13 +87,30 @@
                     return false;
                 }
             }
-            $("#btn1").bind("click",function () {
-                if(isEmptyOrBlank($("#mtitle").val()) || isEmptyOrBlank($("#email").val()) ||
-                    isEmptyOrBlank($("#mcontent").val())){
+
+            $("#btn1").bind("click", function () {
+                if (isEmptyOrBlank($("#mtitle").val()) || isEmptyOrBlank($("#email").val()) ) {
                     //alert("空！")
                     return false;
+                }else {
+                    //获取富文本编辑器内容
+                    //alert(editor.txt.html());
+                    $.ajax({
+                        url: "http://localhost:8083/message.do",
+                        data: {action: "send",mtitle:$("#mtitle").val(),email:$("#email").val(),
+                        mcontent:editor.txt.html()},
+                        type: "GET",
+                        dataType: "text",
+                        success: function (data) {
+                            alert(data)
+                            /*$.ajax({
+                                url: "http://localhost:8083/message.do?action=queryList"
+                            });*/
+                        }
+                    });
                 }
             });
+
         });
     </script>
 </head>
@@ -121,7 +138,7 @@
     </div>
     <div class="clear"></div>
     <div class="content">
-        <form action="message.do?action=send" method="post">
+        <form>
             <div class="content-top">
             <span>
                 标题：<input name="mtitle" type="text" id="mtitle">
@@ -129,15 +146,22 @@
                 <span>
                 发送至邮件地址：<input name="email" type="text" id="email">
             </span><br>
-
             </div>
+            消息内容:<br>
             <div class="content-body">
-                消息内容:<br>
-                <textarea name="mcontent" id="mcontent" style="width: 500px;height: 200px"></textarea>
+                <p>欢迎使用 <b>wangEditor</b> 富文本编辑器</p>
             </div>
-            <button type="submit" id="btn1">发送</button>
+            <button type="button" id="btn1">发送</button>
         </form>
-
+        <script type="text/javascript" src="https://unpkg.com/wangeditor/dist/wangEditor.min.js"></script>
+        <script type="text/javascript">
+            const E = window.wangEditor;
+            const editor = new E('.content-body');
+            // 或者 const editor = new E( document.getElementById('div1') )
+            // 配置 server 接口地址
+            editor.config.uploadImgServer = 'http://localhost:8083/imgUpload';
+            editor.create();
+        </script>
     </div>
 </div>
 </body>

@@ -1,5 +1,7 @@
 package com.msgsys.entity;
 
+import com.google.gson.Gson;
+
 /**
  * 作者：LiuYunTao
  * 日期: 15:34 2020/11/26
@@ -21,6 +23,14 @@ public class User {
                 ", email='" + email + '\'' +
                 ", imgPath='" + imgPath + '\'' +
                 '}';
+    }
+
+    public User(Integer id, String username, String password, String email, String imgPath) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.email = email;
+        this.imgPath = imgPath;
     }
 
     public User(Integer id, String username, String password, String email) {

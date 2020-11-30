@@ -41,7 +41,7 @@ public class MessageServlet extends BaseServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         super.doGet(request, response);
     }
-
+    //当前用户的邮件列表
     public void queryList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User user = (User) request.getSession().getAttribute("user");
         List<Message> messages = messageSerive.queryMessageByToUid(user.getId());
@@ -104,7 +104,8 @@ public class MessageServlet extends BaseServlet {
                 msg="发送失败！";
             }
         }
-        request.setAttribute("msg",msg);
-        request.getRequestDispatcher("/result.jsp").forward(request,response);
+        response.getWriter().write(msg);
+      /*  request.setAttribute("msg",msg);
+        request.getRequestDispatcher("/result.jsp").forward(request,response);*/
     }
 }

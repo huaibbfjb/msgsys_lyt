@@ -46,4 +46,9 @@ public class UserDaoImpl extends BaseDao implements UserDao {
         String sql = "select * from t_user where email=?";
         return queryForOne(User.class, sql, email);
     }
+
+    public User queryUserByUsername(String username) {
+        String sql = "select * from t_user where username=?";
+        return queryForOne(User.class, sql, username);
+    }
 }

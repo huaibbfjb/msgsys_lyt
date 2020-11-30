@@ -61,7 +61,9 @@
         .clear {
             clear: both;
         }
-
+        ul li{
+            margin-bottom: 15px;
+        }
         ul li span {
             margin-right: 5px;
         }
@@ -116,11 +118,12 @@
                 </span>
                 <span class="bordstyle"><%=message.getmTitle()%></span>
                 <span>
-                    <a href="message.do?action=queryDetail&id=<%=message.getId()%>">
+                    <a href="message.do?action=queryDetail&id=<%=message.getId()%>"
+                       style="display: block;">
                     <%=message.getmContent()%>
                     </a>
                 </span>
-                <span class="rfloat">
+                <span class="rfloat" style="margin-top: -19px">
                     <span><a href="message.do?action=delete&id=<%=message.getId()%>">删除</a></span>
                     <span><a href="#">回信</a></span>
                     <span><%=message.getCreateTime()%></span>

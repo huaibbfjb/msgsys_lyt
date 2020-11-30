@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AJAX请求</title>
+    <script type="text/javascript">
+        //原生JS发起AJAX请求
+        function ajaxRequest() {
+            var jsonObj = "空";
+            //1.首先要创建XMLHttpRequest
+            var xmlhttprequest = new XMLHttpRequest();
+            //2.调用open方法设置请求参数
+            xmlhttprequest.open("GET", "/demo01", true);
+            //4.在send方法前绑定onreadystatechange 事件
+            xmlhttprequest.onreadystatechange = function () {
+                //异步内部
+                if (xmlhttprequest.readyState == 4 && xmlhttprequest.status == 200) {
+                    console.log("xmlhttprequest.responseText:"+xmlhttprequest.responseText);
+                    jsonObj = JSON.parse(xmlhttprequest.responseText);
+                    console.log(jsonObj);
+                    //如果要对响应回来的对象进行操作 必须把逻辑写在异步代码块里面
+                }
+                //异步内部
+            };
+            //console.log("异步外面：" + jsonObj);
+            //3.调用send方法发送请求
+            xmlhttprequest.send();
+        }
+    </script>
+</head>
+<body>
+<button onclick="ajaxRequest()">ajax request</button>
+<div id="div1"></div>
+</body>
+</html>

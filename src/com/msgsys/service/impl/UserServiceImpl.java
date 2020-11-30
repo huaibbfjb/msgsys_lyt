@@ -42,4 +42,8 @@ public class UserServiceImpl implements UserService {
     public User queryUserByEmail(String email) {
         return userDao.queryUserByEmail(email);
     }
+
+    public User queryUserByUsername(String username) {
+        return userDao.queryUserByUsername(username);
+    }
 }
