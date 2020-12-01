@@ -34,6 +34,7 @@ import static com.google.code.kaptcha.Constants.KAPTCHA_SESSION_KEY;
 @WebServlet("/user.do")
 public class UserServlet extends BaseServlet {
     UserService userService = new UserServiceImpl();
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //防止中文乱码的金句
@@ -41,6 +42,7 @@ public class UserServlet extends BaseServlet {
         request.setCharacterEncoding("utf-8");
         doGet(request, response);
     }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         //防止中文乱码的金句
@@ -93,10 +95,10 @@ public class UserServlet extends BaseServlet {
                             Pattern pattern = Pattern.compile(reg);
                             Matcher matcher = pattern.matcher(fileItem.getName());
                             //System.out.println(matcher.find());
-                            if(matcher.find()==false){//上传的文件不是图片格式
+                            if (matcher.find() == false) {//上传的文件不是图片格式
                                 user.setImgPath("E:\\upload\\default.png");
                                 System.out.println("上传的文件不是图片格式，默认为默认头像!");
-                            }else {
+                            } else {
                                 String path = newpic(fileItem);
                                 user.setImgPath(path);
                             }
@@ -111,13 +113,13 @@ public class UserServlet extends BaseServlet {
             }
             //System.out.println(user);
             //用户名与邮箱对应的用户都不存在，再做注册操作
-            if(userService.queryUserByUsername(user.getUsername())==null && userService.queryUserByEmail(user.getEmail())==null){
+            if (userService.queryUserByUsername(user.getUsername()) == null && userService.queryUserByEmail(user.getEmail()) == null) {
                 if (userService.register(user) == 1) {
                     System.out.println("注册成功！");
                 } else {
                     System.out.println("注册失败！");
                 }
-            }else {
+            } else {
                 System.out.println("用户名或邮箱已经存在，注册失败！");
             }
 
@@ -162,7 +164,7 @@ public class UserServlet extends BaseServlet {
         request.setCharacterEncoding("utf-8");
         List<User> users = userService.queryAll();
         request.setAttribute("users", users);
-        System.out.println("users:"+users);
+        System.out.println("users:" + users);
      /*   for (int i = 0; i < users.size(); i++) {
             System.out.println("getImgPath():"+users.get(i).getImgPath());
         }*/
@@ -242,24 +244,26 @@ public class UserServlet extends BaseServlet {
         fileItem.write(new File(path));
         return path;
     }
+
     //通过用户名查询
     public void queryUserByUsername(HttpServletRequest request, HttpServletResponse response) throws IOException {
         //防止中文乱码的金句
         response.setContentType("text/html;charset=utf-8");
         request.setCharacterEncoding("utf-8");
-        String username=request.getParameter("username");
-        User user=userService.queryUserByUsername(username);
+        String username = request.getParameter("username");
+        User user = userService.queryUserByUsername(username);
 //        String message = (user == null) ? "<font color=\"green\">用户名可用!</font>" : "<font color=\"red\">用户名已存在</font>";
         String message = (user == null) ? "true" : "false";
         response.getWriter().write(message);
     }
+
     //通过邮箱查询
     public void queryUserByEmail(HttpServletRequest request, HttpServletResponse response) throws IOException {
         //防止中文乱码的金句
         response.setContentType("text/html;charset=utf-8");
         request.setCharacterEncoding("utf-8");
-        String email=request.getParameter("email");
-        User user=userService.queryUserByEmail(email);
+        String email = request.getParameter("email");
+        User user = userService.queryUserByEmail(email);
         String message = (user == null) ? "<font color=\"green\">邮箱可用</font>" : "<font color=\"red\">邮箱已存在</font>";
         response.getWriter().write(message);
     }

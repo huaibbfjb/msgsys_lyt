@@ -27,7 +27,8 @@
             margin-left: 10%;
             line-height: 30px;
         }
-        form div span{
+
+        form div span {
             color: red;
             font-size: 15px;
         }
@@ -39,7 +40,7 @@
     </style>
     <script type="text/javascript" src="js/jquery-1.7.2.js"></script>
     <script type="text/javascript">
-        $(function() {
+        $(function () {
             //判断字符串是否为空
             function isEmptyOrBlank(str) {
                 if (str == null || str.length == 0) {
@@ -48,6 +49,7 @@
                     return false;
                 }
             }
+
             //用户名
             function AccountName() {
                 var $accN = $("#username").val();
@@ -64,6 +66,7 @@
                     return false;
                 }
             }
+
             //密码
             function password() {
                 var $password = $("#password").val();
@@ -80,6 +83,7 @@
                     return false;
                 }
             }
+
             //确认密码
             function confirmPassword() {
                 var $password = $("#password").val();
@@ -90,6 +94,7 @@
                     return false;
                 }
             }
+
             //验证邮箱
             function mailbox() {
                 var $mailbox = $("#email").val();
@@ -108,34 +113,34 @@
             }
 
             //用户名
-            $("#username").bind("focus", function() {
+            $("#username").bind("focus", function () {
                 $("#user_prompt").hide();
             });
-            $("#username").bind("blur", function() {
+            $("#username").bind("blur", function () {
                 AccountName();
             });
             //密码
-            $("#password").bind("focus", function() {
+            $("#password").bind("focus", function () {
                 $("#pwd_prompt").hide();
             });
-            $("#password").bind("blur", function() {
+            $("#password").bind("blur", function () {
                 password();
             });
             //确认密码
-            $("#repassword").bind("focus", function() {
+            $("#repassword").bind("focus", function () {
                 $("#repwd_prompt").hide();
             });
-            $("#repassword").bind("blur", function() {
+            $("#repassword").bind("blur", function () {
                 confirmPassword();
             });
             //邮箱确认
-            $("#email").bind("focus", function() {
+            $("#email").bind("focus", function () {
                 $("#email_prompt").hide();
             });
-            $("#email").bind("blur", function() {
+            $("#email").bind("blur", function () {
                 mailbox();
             });
-            $('#chooseImage').bind('change', function() {
+            $('#chooseImage').bind('change', function () {
                 var filePath = $(this).val(), //获取到input的value，里面是文件的路径
                     fileFormat = filePath.substring(filePath.lastIndexOf(".")).toLowerCase(),
                     src = window.URL.createObjectURL(this.files[0]); //转成可以在本地预览的格式
@@ -148,8 +153,8 @@
                     $('#cropedBigImg').attr('src', src);
                 }
             });
-            $("#btn1").bind("click",function () {
-                if(AccountName()==false || password()==false || confirmPassword() == false || mailbox() == false){
+            $("#btn1").bind("click", function () {
+                if (AccountName() == false || password() == false || confirmPassword() == false || mailbox() == false) {
                     return false;
                 }
             });
@@ -193,7 +198,7 @@
             <div>
                 头像上传<span class="red">*</span>
                 <input type="file" name="file" accept=".jpg,.png,.jpeg" id="chooseImage"><br>
-                <img id="cropedBigImg" style="width: 200px;" src="images/default.png" />
+                <img id="cropedBigImg" style="width: 200px;" src="images/default.png"/>
             </div>
             <div style="margin-left: 30%; margin-top: 40px">
                 <span>

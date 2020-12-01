@@ -5,23 +5,24 @@
     <title>JQuary Ajax</title>
     <script type="text/javascript" src="js/jquery-2.0.0.min.js"></script>
     <script type="text/javascript">
-    $(function () {
-        $("#ajaxBtn").bind("click",function () {
-            $.ajax({
-                url:"http://localhost:8083/demo01",
-                data:{action:"jQueryAjax"},
-                type:"GET",
-                success:function (data) {
-                    //data表示服务器回传的数据
-                    alert(data);
-                }
-            });
+        $(function () {
+            $("#ajaxBtn").bind("click", function () {
+                $.ajax({
+                    url: "http://localhost:8083/demo01",
+                    data: {action: "jQueryAjax"},
+                    type: "GET",
+                    success: function (data) {
+                        //data表示服务器回传的数据
+                        alert(data);
+                    }
+                });
+            })
         })
-    })
     </script>
 </head>
 <body>
-    <button id="ajaxBtn">ajaxBtn</button><br>
-    <div id="msg"></div>
+<button id="ajaxBtn">ajaxBtn</button>
+<br>
+<div id="msg"></div>
 </body>
 </html>

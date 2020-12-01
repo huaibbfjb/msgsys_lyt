@@ -15,7 +15,7 @@
             xmlhttprequest.onreadystatechange = function () {
                 //异步内部
                 if (xmlhttprequest.readyState == 4 && xmlhttprequest.status == 200) {
-                    console.log("xmlhttprequest.responseText:"+xmlhttprequest.responseText);
+                    console.log("xmlhttprequest.responseText:" + xmlhttprequest.responseText);
                     jsonObj = JSON.parse(xmlhttprequest.responseText);
                     console.log(jsonObj);
                     //如果要对响应回来的对象进行操作 必须把逻辑写在异步代码块里面

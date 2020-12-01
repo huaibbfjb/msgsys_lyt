@@ -23,6 +23,7 @@ public class ImageUploadServlet extends HttpServlet {
         String s = "{ \"errno\":0,\"data\":[ \"http://localhost:8083/upload/" + FileUtils.singleUpload(request, response).get("fileName") + "\"] }";
         response.getWriter().write(s);
     }
+
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 

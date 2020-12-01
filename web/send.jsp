@@ -89,16 +89,18 @@
             }
 
             $("#btn1").bind("click", function () {
-                if (isEmptyOrBlank($("#mtitle").val()) || isEmptyOrBlank($("#email").val()) ) {
+                if (isEmptyOrBlank($("#mtitle").val()) || isEmptyOrBlank($("#email").val())) {
                     //alert("空！")
                     return false;
-                }else {
+                } else {
                     //获取富文本编辑器内容
                     //alert(editor.txt.html());
                     $.ajax({
                         url: "http://localhost:8083/message.do",
-                        data: {action: "send",mtitle:$("#mtitle").val(),email:$("#email").val(),
-                        mcontent:editor.txt.html()},
+                        data: {
+                            action: "send", mtitle: $("#mtitle").val(), email: $("#email").val(),
+                            mcontent: editor.txt.html()
+                        },
                         type: "GET",
                         dataType: "text",
                         success: function (data) {

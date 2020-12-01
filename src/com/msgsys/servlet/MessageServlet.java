@@ -41,6 +41,7 @@ public class MessageServlet extends BaseServlet {
     protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         super.doGet(request, response);
     }
+
     //当前用户的邮件列表
     public void queryList(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         User user = (User) request.getSession().getAttribute("user");
@@ -84,7 +85,7 @@ public class MessageServlet extends BaseServlet {
         User toUser = userService.queryUserByEmail(email);
         String msg;
         if (toUser == null) {
-            msg="email不存在！";
+            msg = "email不存在！";
             //response.sendRedirect(getServletContext().getContextPath()+"/send.jsp");
         } else {
             Message message = new Message();
@@ -98,10 +99,10 @@ public class MessageServlet extends BaseServlet {
             message.setmContent(mcontent);
             message.setReadFlag(ConstData.MESSAGE_ISREAD_UNREAD);
             int result = messageSerive.insert(message);
-            if(result>0){
-                msg="发送成功！";
-            }else {
-                msg="发送失败！";
+            if (result > 0) {
+                msg = "发送成功！";
+            } else {
+                msg = "发送失败！";
             }
         }
         response.getWriter().write(msg);

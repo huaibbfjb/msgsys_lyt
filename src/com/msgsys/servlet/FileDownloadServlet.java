@@ -15,6 +15,7 @@ public class FileDownloadServlet extends HttpServlet {
         request.setCharacterEncoding("utf-8");
         doPost(request, response);
     }
+
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         response.setContentType("text/html;charset=utf-8");
@@ -23,6 +24,7 @@ public class FileDownloadServlet extends HttpServlet {
         //System.out.println("path0:"+path);
         download(request, response, path);
     }
+
     //用于显示邮件列表的用户头像
     public void download(HttpServletRequest request, HttpServletResponse response, String path) throws IOException {
         response.setContentType("text/html;charset=utf-8");

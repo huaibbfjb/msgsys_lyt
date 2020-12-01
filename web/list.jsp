@@ -61,9 +61,11 @@
         .clear {
             clear: both;
         }
-        ul li{
+
+        ul li {
             margin-bottom: 15px;
         }
+
         ul li span {
             margin-right: 5px;
         }
